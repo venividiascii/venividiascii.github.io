@@ -158,8 +158,6 @@ To use:
   <script type="text/javascript" src="drawdown.js"></script>
   <script type="text/javascript">
     
-    var ein = document.querySelector(".plain");
-    var eout = document.querySelector(".markdown");
     let content; 
     
     fetch('README.md')
@@ -175,12 +173,7 @@ To use:
         console.error('Error fetching file:', error);
       });
     
-    function update() {
-      eout.innerHTML = markdown(content);
-    }
-    
-    ein.addEventListener("input", update);
-    update();
+    element.innerHTML = markdown(content);
     
   </script>
 </body>
