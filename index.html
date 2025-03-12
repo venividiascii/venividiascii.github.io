@@ -88,7 +88,7 @@
     element.innerHTML = markdown(text);
     
   </textarea>
-  <div></div>
+  <div class="testo"></div>
   <script type="text/javascript" src="drawdown.js"></script>
   <script type="text/javascript">
     
@@ -101,7 +101,7 @@
       })
       .then(text => {
         content = text; // Assign the text to the variable
-        element.innerHTML = markdown(content);
+        testo.innerHTML = markdown(content);
         console.log('File loaded:', content); // Use the content here
       })
       .catch(error => {
