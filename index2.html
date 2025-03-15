@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Site</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.3;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;           
+            background: #FFF;
+        }
+.container {
+    flex: 1;
+}
+        /* Header Styles */
+        header {
+            background: #333;
+            color: white;
+            padding: 1rem;
+            position: relative;
+        }
+
+        /* Desktop Layout */
+        @media (min-width: 801px) {
+            .container {
+                display: flex;
+                min-height: calc(100vh - 120px);
+            }
+
+            nav {
+                width: 250px;
+                background: #444;
+                padding: 2rem;
+            }
+
+            article {
+                flex: 1;
+                padding: 2rem;
+                max-width: 40em;
+                margin: 0 auto;
+            }
+
+            .menu-button {
+                display: none;
+            }
+        }
+
+        /* Mobile Layout */
+        @media (max-width: 800px) {
+            .menu-button {
+                display: block;
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                background: #555;
+                color: white;
+                border: none;
+                padding: 0.5rem 1rem;
+                border-radius: 10px;
+                cursor: pointer;
+            }
+
+            nav {
+                position: fixed;
+                top: 80px;
+                right: -250px;
+                width: 250px;
+                height: calc(100vh - 60px);
+                background: #333;
+                transition: 0.15s;
+                z-index: 1000;
+                padding: 1rem;
+            }
+
+            nav.active {
+                right: 0;
+            }
+
+            article {
+                padding: 2rem 1rem;
+                margin: 0 auto;
+            }
+        }
+
+        /* Navigation Styles */
+        nav menu {
+            list-style: none;
+        }
+        nav li {
+            margin: 0.25rem 0;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        /* Article Styles */
+        article {
+            width: 100%;
+        }
+        /* Footer Styles */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Website Title</h1>
+        <button class="menu-button" onclick="toggleMenu()"><b>☰ MENU</b></button>
+    </header>
+
+    <div class="container">
+        <nav id="main-nav">
+            <menu>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About This Website Click Here For it</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+            </menu>
+        </nav>
+
+        <article>
+            <script type="text/javascript" src="drawdown.js"></script>
+            <script type="text/javascript">
+              
+              let content; 
+              
+              fetch('README.md')
+                .then(response => {
+                  if (!response.ok) throw new Error('Network response was not ok');
+                  return response.text(); // Parse the response as text
+                })
+                .then(text => {
+                  content = text; // Assign the text to the variable
+                  testo.innerHTML = markdown(content);
+                  console.log('File loaded:', content); // Use the content here
+                })
+                .catch(error => {
+                  console.error('Error fetching file:', error);
+                });
+              
+              testo.innerHTML = markdown(content);
+              
+            </script>
+
+          
+        </article>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Your Website. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('nav');
+            nav.classList.toggle('active');
+            
+
+        }
+
+        // Close menu when clicking outside
+        window.addEventListener('click', function(event) {
+            const nav = document.querySelector('nav');
+            const button = document.querySelector('.menu-button');
+            
+            if (window.innerWidth <= 800 && 
+                !nav.contains(event.target) && 
+                !button.contains(event.target)) {
+                nav.classList.remove('active');
+                
+            }
+        });
+    </script>
+</body>
+</html>
